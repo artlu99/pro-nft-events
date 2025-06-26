@@ -1,23 +1,20 @@
 import { createConfig } from "ponder";
 
-import { PrimitiveManagerAbi } from "./abis/PrimitiveManagerAbi";
+import { TierRegistryAbi } from "./abis/TierRegistryAbi";
 
 export default createConfig({
   chains: {
-    mainnet: {
-      id: 1,
+    base: {
+      id: 8453,
       rpc: process.env.PONDER_RPC_URL_1,
     },
   },
   contracts: {
-    PrimitiveManager: {
-      chain: "mainnet",
-      abi: PrimitiveManagerAbi,
-      address: "0x54522dA62a15225C95b01bD61fF58b866C50471f",
-      startBlock: 14438081,
-      filter: {
-        event: "Swap",
-      },
+    TierRegistry: {
+      chain: "base",
+      abi: TierRegistryAbi,
+      address: "0x00000000fc84484d585c3cf48d213424dfde43fd",
+      startBlock: 31180905,
     },
   },
 });

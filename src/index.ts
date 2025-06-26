@@ -1,10 +1,15 @@
 import { ponder } from "ponder:registry";
 import schema from "ponder:schema";
 
-ponder.on("PrimitiveManager:Swap", async ({ event, context }) => {
-  await context.db.insert(schema.swapEvent).values({
+ponder.on("TierRegistry:PurchasedTier", async ({ event, context }) => {
+  await context.db.insert(schema.purchaseTierEvent).values({
     id: event.id,
+    fid: event.args.fid,
+    tier: Number(event.args.tier),
+    forDays: Number(event.args.forDays),
     payer: event.args.payer,
-    recipient: event.args.recipient,
+    blockNumber: event.block.number,
+    blockTimestamp: event.block.timestamp,
+    transactionHash: event.transaction.hash,
   });
 });
